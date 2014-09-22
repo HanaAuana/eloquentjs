@@ -1,14 +1,14 @@
 var size = 8;
-
+var board = "";
 for (var row = 0; row < size; row++) {
-	var r = "";
 	for (var col = 0; col < size; col++) {
 		if( (row+col)%2 === 0 ){
-			r +="#";
+			board +="#";
 		}
 		else{
-			r+= " ";
+			board += " ";
 		}
 	};
-	console.log(r);
+	board += "\n";
 };
+console.log(board);
