@@ -10,4 +10,16 @@ var arrayToList = function(arr){
 	return list;
 };
 
-console.log(arrayToList([1, 2, 3]));
+var listToArray = function(list){
+	var arr = [];
+	var next = list;
+	while(next.value !== undefined){
+		arr.push(next.value);
+		next = next.rest;
+	}
+	return arr;
+};
+
+console.log(arrayToList([10, 20, 30]));
+
+console.log(listToArray(arrayToList([10, 20, 30])));
