@@ -1,12 +1,11 @@
 var arrayToList = function(arr){
-	var list = {};
-	var curNode = list;
-	while(arr.length !== 0){
-		curNode.value = arr.shift();
-		curNode.rest ={};
-		curNode = curNode.rest;
+	var list = null;
+	for( var i = array.length - 1; i >= 0; i --){
+		list = {
+			value: array[i],
+			rest: list
+		};
 	}
-	curNode.rest = null;
 	return list;
 };
 
@@ -20,6 +19,16 @@ var listToArray = function(list){
 	return arr;
 };
 
+var prepend = function(element, list){
+	var newList = {
+		value: element,
+		rest: list
+	};
+	return newList;
+};
+
 console.log(arrayToList([10, 20, 30]));
 
 console.log(listToArray(arrayToList([10, 20, 30])));
+
+console.log(prepend(10, prepend(20, null)));
