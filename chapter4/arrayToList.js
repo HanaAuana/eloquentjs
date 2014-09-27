@@ -1,8 +1,8 @@
 var arrayToList = function(arr){
 	var list = null;
-	for( var i = array.length - 1; i >= 0; i --){
+	for( var i = arr.length - 1; i >= 0; i --){
 		list = {
-			value: array[i],
+			value: arr[i],
 			rest: list
 		};
 	}
@@ -11,20 +11,27 @@ var arrayToList = function(arr){
 
 var listToArray = function(list){
 	var arr = [];
-	var next = list;
-	while(next.value !== undefined){
-		arr.push(next.value);
-		next = next.rest;
+	for( var node = list; node; node = node.rest){
+		arr.push(node.value);
 	}
 	return arr;
 };
 
 var prepend = function(element, list){
-	var newList = {
+	return {
 		value: element,
 		rest: list
 	};
-	return newList;
+};
+
+//0 based indexing
+var nth = function(num, list){
+	if(num === 0){
+		return list.value;
+	}
+	else{
+		return nth(num-1, list.rest);
+	}
 };
 
 console.log(arrayToList([10, 20, 30]));
@@ -32,3 +39,5 @@ console.log(arrayToList([10, 20, 30]));
 console.log(listToArray(arrayToList([10, 20, 30])));
 
 console.log(prepend(10, prepend(20, null)));
+
+console.log(nth(1, arrayToList([10, 20, 30])));
