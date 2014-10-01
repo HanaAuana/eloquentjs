@@ -2,7 +2,7 @@
 //Returns true only if the predicate is true for all elements
 var every = function(arr, predicate){
 	for (var i = 0; i < arr.length; i++) {
-		if(predicate(arr[i]) === false){
+		if(!predicate(arr[i]) ){
 			return false;
 		}
 	}
@@ -12,7 +12,7 @@ var every = function(arr, predicate){
 //Returns true if the predicate is true for any element
 var some = function(arr, predicate){
 	for (var i = 0; i < arr.length; i++) {
-		if(predicate(arr[i]) === true){
+		if(predicate(arr[i])){
 			return true;
 		}
 	}
