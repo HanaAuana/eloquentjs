@@ -47,7 +47,19 @@ var average = function(input){
   }) / input.length;
 };
 
-
+var groupBy = function(input, group){
+  var output = {};
+  input.forEach(function(item){
+    var grouping = group(item);
+    if(grouping in output){
+      output[grouping].push(item);
+    }
+    else{
+      output[grouping] = [item];
+    }
+  });
+  return output;
+};
 
 var centuries = {};
 
@@ -61,8 +73,17 @@ ancestry.forEach(function(person){
   }
 });
 
+var centuries2 = groupBy(ancestry, function(person){
+  return Math.ceil(person.died / 100);
+});
+
 for(var century in centuries){
   centuries[century] = centuries[century].map(function(person){
+    return person.died - person.born;
+  });
+}
+for(var century in centuries2){
+  centuries2[century] = centuries2[century].map(function(person){
     return person.died - person.born;
   });
 }
@@ -70,6 +91,9 @@ for(var century in centuries){
 for(var century in centuries){
   centuries[century] = average(centuries[century]);
 }
+for(var century in centuries2){
+  centuries2[century] = average(centuries2[century]);
+}
 
 console.log(centuries);
-//console.log(centuries);
+console.log(centuries2);
