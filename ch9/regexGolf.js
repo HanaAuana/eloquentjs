@@ -23,7 +23,7 @@ function verify(regexp, yes, no) {
 }
 
 // 1
-verify(/ca[r|t]/,
+verify(/ca[rt]/,
        ["my car", "bad cats", "car", "cat"],
        ["camper", "high art"]);
 // 2
@@ -35,7 +35,7 @@ verify(/ferr(et|y|ari)/,
        ["ferret", "ferry", "ferrari"],
        ["ferrum", "transfer A"]);
 // 4
-verify(/\b\w+ious\b/,
+verify(/ious\b/,
        ["how delicious", "spacious room"],
        ["ruinous", "consciousness"]);
 // 5
@@ -43,7 +43,7 @@ verify(/\s[.,:;]/,
        ["bad punctuation ."],
        ["escape the dot"]);
 // 6
-verify(/\b\w{7,}\b/,
+verify(/\w{7,}/,
        ["hottentottententen"],
        ["no", "hotten totten tenten"]);
 // 7
