@@ -1,6 +1,7 @@
 // Fill in this regular expression.
-var number = /^[+-]?(\d+|\d*\.\d+|\d+\.\d*)([eE][+-]?\d+)?$/;
-
+//var number = /^[+-]?(\d+|\d*\.\d+|\d+\.\d*)([eE][+-]?\d+)?$/;
+//Optimized
+var number = /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
 // Tests:
 ["1", "-1", "+15", "1.55", ".5", "5.", "1.3e2", "1E-4",
  "1e+12"].forEach(function(s) {
