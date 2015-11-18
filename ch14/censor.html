@@ -1,0 +1,17 @@
+<!doctype html>
+<body>
+  <input type="text">
+  <script>
+  var Q_KEY = 81;
+  var W_KEY = 87;
+  var X_KEY = 88;
+  var field = document.querySelector("input");
+  field.addEventListener('keydown', function(event){
+    if(event.keyCode === Q_KEY ||
+       event.keyCode === W_KEY ||
+       event.keyCode === X_KEY){
+      event.preventDefault();
+    }
+  });
+  </script>
+</body>
