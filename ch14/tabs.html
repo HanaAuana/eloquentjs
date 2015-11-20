@@ -1,0 +1,54 @@
+<!doctype html>
+
+<body>
+  <div id="wrapper">
+    <div data-tabname="one">Tab one</div>
+    <div data-tabname="two">Tab two</div>
+    <div data-tabname="three">Tab three</div>
+  </div>
+
+  <style>
+    .active{
+      display: "block";
+    }
+    .active-button{
+      background-color: green;
+      border: 1px solid red;
+    }
+    .hidden{
+      display: none;
+    }
+  </style>
+
+  <script>
+    function asTabs(node) {
+
+      var firstChild = node.firstChild;
+      var tabs = document.createElement('div');
+      for(var i = 0; i < node.children.length; i++){
+        node.children[i].className = "hidden";
+        var button = document.createElement('button');
+        button.innerHTML = node.children[i].getAttribute("data-tabname");
+        tabs.appendChild(button);
+      }
+      tabs.children[0].className = "active-button";
+      node.children[0].className = "active";
+      node.insertBefore(tabs, node.firstChild);
+      tabs.addEventListener('click', function(event){
+        var currActive = document.querySelector(".active").className = "hidden";
+        var currActiveButton = document.querySelector(".active-button").className = "";
+
+        var target = event.target;
+        event.target.className = "active-button";
+
+        for(var i = 0; i < node.children.length; i++){
+          if(node.children[i].hasAttribute('data-tabname') && node.children[i].getAttribute('data-tabname') === target.innerHTML){
+            node.children[i].className = "active";
+          }
+        }
+        event.stopPropagation()
+      });
+    }
+    asTabs(document.querySelector("#wrapper"));
+  </script>
+</body>
