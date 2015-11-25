@@ -1,11 +1,19 @@
 <!doctype html>
-<script src="code/chapter/15_game.js"></script>
-<script src="code/game_levels.js"></script>
-<script src="code/chapter/16_canvas.js"></script>
 
-<canvas width="600" height="200"></canvas>
+<canvas width="600" height="600"></canvas>
 <script>
   var cx = document.querySelector("canvas").getContext("2d");
 
+  //Takes an (xPos,yPos) point denoting the top left corner
+  function drawTrapezoid(xPos, yPos, height, widthTop, widthBase) {
+    cx.beginPath();
+    cx.moveTo(xPos, yPos);
+    cx.lineTo(xPos+((widthBase-widthTop)/2), yPos+height);
+    cx.lineTo(xPos+((widthBase-widthTop)/2)+widthTop, yPos+height);
+    cx.lineTo(xPos+widthBase, yPos);
+    cx.lineTo(xPos, yPos);
+    cx.stroke();
+  }
 
+  drawTrapezoid(200, 200, 100, 150, 50);
 </script>
