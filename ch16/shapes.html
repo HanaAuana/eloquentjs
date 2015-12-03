@@ -24,6 +24,22 @@
     cx.restore();
   }
 
+  function drawZigZag(xPos, yPos, segLength, segHeight, numSegs){
+    var totalHeight = 0;
+    cx.beginPath();
+    cx.moveTo(xPos, yPos);
+    for(var i = 0; i < numSegs; i++){
+      totalHeight += segHeight;
+      cx.lineTo(xPos+segLength, yPos + totalHeight);
+      totalHeight += segHeight;
+      cx.lineTo(xPos, yPos + totalHeight);
+
+    }
+    cx.stroke();
+  }
+
   drawTrapezoid(200, 200, 100, 150, 50);
   drawDiamond(100, 100, 50, 90, "red");
+  drawZigZag(200, 20, 80, 5, 6);
+
 </script>
