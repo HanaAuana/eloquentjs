@@ -33,7 +33,18 @@
       cx.lineTo(xPos+segLength, yPos + totalHeight);
       totalHeight += segHeight;
       cx.lineTo(xPos, yPos + totalHeight);
+    }
+    cx.stroke();
+  }
 
+  function drawSpiral(xPos, yPos, size){
+    cx.beginPath()
+    cx.moveTo(xPos, yPos);
+    for(var i = 0; i < size; i++){
+      var angle = 0.1*i;
+      var newX = xPos + (1+angle)*Math.cos(angle);
+      var newY = yPos + (1+angle)*Math.sin(angle);
+      cx.lineTo(newX, newY);
     }
     cx.stroke();
   }
@@ -41,5 +52,6 @@
   drawTrapezoid(200, 200, 100, 150, 50);
   drawDiamond(100, 100, 50, 90, "red");
   drawZigZag(200, 20, 80, 5, 6);
+  drawSpiral(350, 80, 360);
 
 </script>
