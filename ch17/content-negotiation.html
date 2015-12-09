@@ -1,0 +1,28 @@
+<script>
+var contentTypes = ["text/plain", "text/html", "application/json",
+                    "application/rainbows+unicorns"];
+function makeRequest(contentType){
+  var req = new XMLHttpRequest();
+  req.addEventListener("load", function() {
+      if(req.status === 200){
+        console.log(contentType + ":\n", req.responseText, "\n");
+      }
+      else{
+        console.log("Error: "+req.status);
+      }
+  });
+  req.addEventListener("error", function(e) {
+    console.log("Network error");
+  });
+  req.open("GET", "http://eloquentjavascript.net/author", true);
+  req.setRequestHeader("Accept", contentType);
+  req.send(null);
+
+}
+
+for(var i = 0; i < contentTypes.length; i++){
+  makeRequest(contentTypes[i]);
+}
+
+
+</script>
