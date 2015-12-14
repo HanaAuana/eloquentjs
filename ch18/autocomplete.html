@@ -1,0 +1,47 @@
+<input type="text" id="field">
+<div id="suggestions" style="cursor: pointer"></div>
+
+<script>
+  // Builds up an array with global variable names, like
+  // 'alert', 'document', and 'scrollTo'
+  var terms = [];
+  for(var name in window){
+    terms.push(name);
+  }
+  var input = document.querySelector('#field');
+  var suggestions = document.querySelector('#suggestions');
+
+  input.addEventListener('keyup', function(){
+
+    while(suggestions.firstChild){
+      suggestions.removeChild(suggestions.firstChild);
+    }
+    var newInput = input.value;
+    var matches;
+    if(newInput.length > 0){
+      matches = terms.filter(function(item){
+        for(var i = 0; i < item.length && i < newInput.length; i++){
+          if(item[i] !== newInput[i]){
+            return false;
+          }
+        }
+        return true;
+      });
+    }
+    else{
+      matches = [];
+    }
+
+    for(var i = 0; i < matches.length; i++){
+      var newChild = document.createElement('p');
+      newChild.className = "match";
+      newChild.innerText = matches[i];
+      newChild.addEventListener('click', function(e){
+        input.value = e.target.innerText;
+      })
+      suggestions.appendChild(newChild);
+    }
+  })
+
+  // Your code here.
+</script>
